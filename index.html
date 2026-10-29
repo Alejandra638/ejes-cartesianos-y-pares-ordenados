@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ubicar puntos en el plano · Matemática 4° año</title>
+<style>
+:root{box-sizing:border-box;--bg:#fbf8f1;--card:#fff;--tx:#23201a;--mu:#6b6558;--ac:#b4561f;--ac2:#2f6f5e;--bd:#e3dccb;--ok:#1f7a45;--no:#b3261e;--gr:#e8e1d0;--q:#f3e3cf;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1a17;--card:#26241f;--tx:#f1ece0;--mu:#a9a392;--ac:#e8895a;--ac2:#6fc4a8;--bd:#3a372f;--ok:#58c785;--no:#ff8a80;--gr:#3a372f;--q:#3a3226;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1a17;--card:#26241f;--tx:#f1ece0;--mu:#a9a392;--ac:#e8895a;--ac2:#6fc4a8;--bd:#3a372f;--ok:#58c785;--no:#ff8a80;--gr:#3a372f;--q:#3a3226;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:auto;padding:16px}
+h1{font-size:1.9rem;line-height:1.2;margin:.4em 0}h2{font-size:1.4rem;margin:0 0 .4em;color:var(--ac)}h3{margin:.2em 0}
+.sec{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin:18px 0}
+.tag{font:600 .75rem system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ac2)}
+.q{border-top:1px dashed var(--bd);padding:12px 0}.q:first-of-type{border:0}
+.lv{font:600 .7rem system-ui,sans-serif;background:var(--q);padding:2px 8px;border-radius:99px;margin-left:6px}
+button{font:600 .9rem system-ui,sans-serif;background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;margin:4px 6px 4px 0}
+button.s{background:var(--ac2)}
+label.o{display:block;padding:7px 10px;margin:4px 0;border:1px solid var(--bd);border-radius:8px;cursor:pointer}
+input[type=number]{width:70px;font-size:1rem;padding:6px;border-radius:6px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+.fb{margin-top:6px;font-size:.95rem}.ok{color:var(--ok)}.no{color:var(--no)}
+.fig{overflow-x:auto;text-align:center}svg{max-width:100%;height:auto}
+.box{background:var(--q);border-left:4px solid var(--ac);padding:10px 14px;border-radius:8px;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem}td,th{border:1px solid var(--bd);padding:6px;text-align:center}
+#score{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border:1px solid var(--bd);padding:8px;border-radius:8px;font:600 .95rem system-ui,sans-serif;text-align:center}
+.hid{display:none}
+</style></head><body><main>
+<div class="tag">Matemática · 4° año</div>
+<h1>¿Dónde queda? Ubicar puntos en el plano</h1>
+<p>Partimos de un pueblo, Doblas, y de una pregunta: <b>¿cómo le explicamos a alguien dónde está un lugar sin dudas?</b> Cada ejercicio se puede comprobar solo.</p>
+
+<section class="sec"><div class="tag">Parte 1 · Descubrí</div><h2>El pueblo y sus calles</h2>
+<p>Este es un mapa simplificado: cada cuadrado es <b>una cuadra</b>. La plaza está en el centro. Lucía llegó de visita y pregunta cómo llegar a distintos lugares.</p>
+<div class="fig" id="map"></div>
+<div id="d1"></div>
+<div class="box"><b>Para pensar:</b> hasta ahora usamos palabras. ¿Qué necesitaste saber para no equivocarte? Cuando lo hayas pensado, tocá el botón.<br>
+<button class="s" onclick="document.getElementById('conc').classList.toggle('hid')">Ver conclusión</button>
+<div id="conc" class="hid"><ul><li>Un <b>punto de partida</b> común (la plaza).</li><li><b>Dos direcciones</b> perpendiculares (este-oeste y norte-sur).</li><li>Una <b>unidad</b> para medir (la cuadra) y un <b>sentido</b> (hacia dónde cuenta como positivo).</li><li>Un <b>orden</b> para decirlo: primero cuántas cuadras al este/oeste, después al norte/sur.</li></ul>Los matemáticos hicieron exactamente esto y lo llamaron <b>sistema de ejes cartesianos</b>.</div></div></section>
+
+<section class="sec"><div class="tag">Parte 2 · Formalizamos</div><h2>Marco teórico</h2>
+<div class="fig" id="teo"></div>
+<ul>
+<li><b>Ejes cartesianos:</b> dos rectas numéricas perpendiculares. El <b>eje x</b> (horizontal) se llama <b>eje de abscisas</b>; el <b>eje y</b> (vertical), <b>eje de ordenadas</b>.</li>
+<li><b>Origen:</b> el punto donde se cortan, O = (0, 0). Es nuestra “plaza”.</li>
+<li><b>Par ordenado (x; y):</b> la dirección de un punto. La primera coordenada (abscisa) dice cuánto moverse en horizontal: positivo a la derecha, negativo a la izquierda. La segunda (ordenada) dice cuánto moverse en vertical: positivo hacia arriba, negativo hacia abajo. <b>El orden importa:</b> (2; 5) no es (5; 2).</li>
+<li><b>Cuatro cuadrantes</b>, numerados en sentido contrario a las agujas del reloj:</li></ul>
+<table><tr><th>Cuadrante</th><th>Signo de x</th><th>Signo de y</th><th>Ejemplo</th></tr>
+<tr><td>I</td><td>+</td><td>+</td><td>(3; 2)</td></tr><tr><td>II</td><td>−</td><td>+</td><td>(−2; 3)</td></tr><tr><td>III</td><td>−</td><td>−</td><td>(−4; −1)</td></tr><tr><td>IV</td><td>+</td><td>−</td><td>(2; −3)</td></tr></table>
+<div class="box">Los puntos sobre los ejes <b>no pertenecen a ningún cuadrante</b>. Si y = 0 el punto está sobre el eje x; si x = 0, sobre el eje y.</div></section>
+
+<section class="sec"><div class="tag">Parte 3</div><h2>Comprensión</h2><div id="c1"></div></section>
+<section class="sec"><div class="tag">Parte 4</div><h2>Afianzamiento</h2><p>Para ubicar un punto, tocá el plano: se marca en el cruce de líneas más cercano.</p><div id="c2"></div></section>
+<section class="sec"><div class="tag">Parte 5</div><h2>Transferencia: viajes desde la plaza</h2><p>Usamos el mapa del pueblo como plano: la plaza es el origen y la unidad es una cuadra. Este es el mapa con los ejes:</p><div class="fig" id="map2"></div><div id="c3"></div></section>
+<section class="sec"><div class="tag">Parte 6</div><h2>Evaluación</h2><div id="score">Puntaje: 0 / 18</div><div id="ev"></div></section>
+</main>
+<script>
+const R=6,C=30,S=2*R*C+30,O=S/2,X=x=>O+C*x,Y=y=>O-C*y;
+const PL=[[0,0,'Plaza','#b4561f'],[3,2,'Escuela','#2f6f5e'],[-2,3,'Club','#2f6f5e'],[-4,-1,'Hospital','#2f6f5e'],[2,-3,'Terminal','#2f6f5e'],[-3,-4,'Cooperativa','#2f6f5e']];
+function G(o={}){let s=`<svg viewBox="0 0 ${S} ${S}" width="${o.w||390}" ${o.id?`id="${o.id}"`:''} role="img" aria-label="Plano">`;
+if(o.quad)[[1,1,'I'],[-1,1,'II'],[-1,-1,'III'],[1,-1,'IV']].forEach(([a,b,t])=>{s+=`<rect x="${a>0?O:15}" y="${b>0?15:O}" width="${C*R}" height="${C*R}" fill="${(a*b>0)?'#b4561f':'#2f6f5e'}" opacity=".1"/><text x="${X(a*3.5)}" y="${Y(b*4.5)}" text-anchor="middle" font-size="22" fill="currentColor" opacity=".5">${t}</text>`});
+for(let i=-R;i<=R;i++){s+=`<line x1="${X(i)}" y1="15" x2="${X(i)}" y2="${S-15}" stroke="${i?'#c9c0aa':'currentColor'}" stroke-width="${i||o.st?1:2.5}" opacity="${i?.6:1}"/><line x1="15" y1="${Y(i)}" x2="${S-15}" y2="${Y(i)}" stroke="${i?'#c9c0aa':'currentColor'}" stroke-width="${i||o.st?1:2.5}" opacity="${i?.6:1}"/>`;
+if(o.ax&&i){s+=`<text x="${X(i)}" y="${Y(0)+14}" font-size="10" text-anchor="middle" fill="currentColor">${i}</text><text x="${X(0)-5}" y="${Y(i)+4}" font-size="10" text-anchor="end" fill="currentColor">${i}</text>`}}
+if(o.ax)s+=`<text x="${S-8}" y="${Y(0)-6}" font-size="13" fill="currentColor" text-anchor="end">x</text><text x="${X(0)+8}" y="24" font-size="13" fill="currentColor">y</text><text x="${X(0)-5}" y="${Y(0)+14}" font-size="10" text-anchor="end" fill="currentColor">0</text>`;
+(o.p||[]).forEach(([x,y,l,c])=>{s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="5.5" fill="${c||'#b4561f'}" stroke="#fff" stroke-width="1.5"/><text x="${X(x)+8}" y="${Y(y)-7}" font-size="12" font-weight="700" fill="currentColor">${l||''}</text>`});
+return s+'<g id="mk"></g></svg>'}
+document.getElementById('map').innerHTML=G({p:PL,st:1});
+document.getElementById('map2').innerHTML=G({p:PL,ax:1});
+document.getElementById('teo').innerHTML=G({quad:1,ax:1,p:[[3,2,'A(3; 2)'],[-2,3,'B(−2; 3)'],[-4,-1,'C(−4; −1)'],[2,-3,'D(2; −3)'],[0,0,'O']]});
+// preguntas: t=mc|pair|click
+const D1=[
+{t:'mc',q:'Lucía pregunta por el Club. Alguien le dice: “queda a 3 cuadras de la plaza”. ¿Alcanza esa información para llegar?',o:['Sí, alcanza','No: hay muchos lugares a 3 cuadras de la plaza','Sí, si camina en línea recta'],a:1,e:'Hay muchísimos puntos a 3 cuadras de distancia: falta la dirección.'},
+{t:'mc',q:'Ahora le dicen: “andá 3 cuadras al este y después 2 al norte”. ¿A qué lugar llega?',o:['Club','Escuela','Terminal','Hospital'],a:1,e:'Este = derecha, norte = arriba: llega a la Escuela.'},
+{t:'mc',q:'Si ahora fuera “2 cuadras al norte y después 3 al este”, ¿llegaría al mismo lugar?',o:['Sí, al mismo','No, a otro lugar','Depende del día'],a:0,e:'En el pueblo sí llega al mismo lugar, pero para escribir un código común necesitamos acordar un orden fijo. Eso será el par ordenado.'},
+{t:'mc',q:'Para llegar al Hospital, ¿qué descripción es correcta?',o:['4 cuadras al este y 1 al sur','4 cuadras al oeste y 1 al sur','4 cuadras al oeste y 1 al norte','1 cuadra al oeste y 4 al sur'],a:1,e:'El Hospital está a la izquierda (oeste) y apenas abajo (sur).'}];
+const CO=[
+{t:'mc',q:'El eje horizontal se llama:',o:['eje de ordenadas','eje de abscisas','origen'],a:1,e:'Horizontal = abscisas (x). Vertical = ordenadas (y).'},
+{t:'mc',q:'En el par ordenado (4; −2), la abscisa es:',o:['4','−2','2'],a:0,e:'La abscisa es la primera coordenada.'},
+{t:'mc',q:'Las coordenadas del origen son:',o:['(1; 1)','(0; 0)','(0; 1)'],a:1,e:'Es donde se cortan los ejes.'},
+{t:'mc',q:'Un punto del cuadrante II tiene:',o:['x positiva, y positiva','x negativa, y positiva','x negativa, y negativa','x positiva, y negativa'],a:1,e:'II = arriba a la izquierda.'},
+{t:'mc',q:'¿(2; 5) y (5; 2) son el mismo punto?',o:['Sí','No, el orden importa'],a:1,e:'Por eso se llaman pares ordenados.'}];
+const AF=[
+{t:'pair',q:'Escribí las coordenadas del punto P.',a:[-3,4],g:{p:[[-3,4,'P']],ax:1},e:'3 a la izquierda y 4 arriba: (−3; 4).'},
+{t:'click',q:'Ubicá el punto (4; −2).',a:[4,-2],e:'4 a la derecha, 2 hacia abajo.'},
+{t:'click',q:'Ubicá el punto (−5; −3).',a:[-5,-3],e:'5 a la izquierda, 3 hacia abajo.'},
+{t:'mc',q:'El punto (0; −4) está:',o:['en el cuadrante III','en el cuadrante IV','sobre el eje y','sobre el eje x'],a:2,e:'Como x = 0, está sobre el eje y.'}];
+const TR=[
+{t:'pair',q:'Tomás sale del Club (−2; 3) y camina 4 cuadras al este y 5 al sur. ¿En qué punto termina?',a:[2,-2],e:'(−2+4; 3−5) = (2; −2).'},
+{t:'mc',q:'Camila va del Hospital (−4; −1) a la Terminal (2; −3). ¿Qué recorrido hace?',o:['6 al este y 2 al sur','6 al este y 2 al norte','2 al este y 6 al sur','4 al este y 3 al sur'],a:0,e:'Pasa de x = −4 a 2 (+6) y de y = −1 a −3 (−2).'},
+{t:'click',q:'Se abre una panadería 3 cuadras al oeste y 2 al sur de la plaza. Marcala en el plano.',a:[-3,-2],e:'(−3; −2), cuadrante III.'},
+{t:'pair',q:'Lucía sale de la plaza: 2 cuadras al oeste y 4 al sur; luego 3 al este y 1 al norte. ¿Dónde está?',a:[1,-3],e:'(−2; −4) y luego (−2+3; −4+1) = (1; −3).'}];
+const EV=[
+{l:'Básico',t:'mc',q:'¿En qué cuadrante está (−3; 7)?',o:['I','II','III','IV'],a:1,e:'x negativa, y positiva: II.'},
+{l:'Básico',t:'mc',q:'¿En qué cuadrante está (5; −1)?',o:['I','II','III','IV'],a:3,e:'x positiva, y negativa: IV.'},
+{l:'Básico',t:'pair',q:'Escribí las coordenadas de M.',a:[2,5],g:{p:[[2,5,'M']],ax:1},e:'(2; 5).'},
+{l:'Básico',t:'pair',q:'Escribí las coordenadas de N.',a:[-4,-2],g:{p:[[-4,-2,'N']],ax:1},e:'(−4; −2).'},
+{l:'Básico',t:'click',q:'Ubicá (0; 5).',a:[0,5],e:'Sobre el eje y.'},
+{l:'Básico',t:'click',q:'Ubicá (−6; 2).',a:[-6,2],e:'6 a la izquierda, 2 arriba.'},
+{l:'Intermedio',t:'click',q:'Ubicá (3; 3).',a:[3,3],e:'Cuadrante I.'},
+{l:'Intermedio',t:'mc',q:'¿Cuál de estos puntos está sobre el eje x?',o:['(0; 4)','(−5; 0)','(1; 1)','(0; 0) es el único'],a:1,e:'Sobre el eje x la ordenada es 0.'},
+{l:'Intermedio',t:'mc',q:'¿Qué par tiene abscisa −2 y ordenada 4?',o:['(4; −2)','(−2; 4)','(2; −4)','(−4; 2)'],a:1,e:'Primero la abscisa.'},
+{l:'Intermedio',t:'mc',q:'Un punto con x > 0 e y < 0 está en el cuadrante:',o:['I','II','III','IV'],a:3,e:'Abajo a la derecha: IV.'},
+{l:'Intermedio',t:'mc',q:'Si (a; b) está en el cuadrante III y a = −2, ¿qué signo tiene b?',o:['Positivo','Negativo','Cero','No se sabe'],a:1,e:'En III ambas son negativas.'},
+{l:'Intermedio',t:'pair',q:'Escribí el simétrico de (3; 2) respecto del eje x (la imagen “en espejo”).',a:[3,-2],e:'Se conserva x y cambia el signo de y.'},
+{l:'Desafío',t:'pair',q:'Tres vértices de un rectángulo son (1; 1), (5; 1) y (5; 4). ¿Cuál es el cuarto?',a:[1,4],e:'Los lados son paralelos a los ejes: (1; 4).'},
+{l:'Desafío',t:'pair',q:'Hallá el punto medio del segmento con extremos A(−4; 2) y B(2; −4).',a:[-1,-1],e:'((−4+2)/2; (2−4)/2) = (−1; −1).'},
+{l:'Desafío',t:'click',q:'Ubicá un punto del cuadrante II que esté a 3 unidades del eje y y a 5 unidades del eje x.',a:[-3,5],e:'Cuadrante II: x = −3, y = 5.'},
+{l:'Desafío',t:'mc',q:'Si a ≠ b, ¿los puntos (a; b) y (b; a) son el mismo?',o:['Sí','No, son puntos distintos','Solo si a es negativo'],a:1,e:'El orden de las coordenadas importa.'},
+{l:'Desafío',t:'mc',q:'El origen (0; 0) pertenece al cuadrante:',o:['I','Al I y al III','A ninguno','A los cuatro'],a:2,e:'Está sobre los ejes.'},
+{l:'Desafío',t:'pair',q:'Del punto (−3; 4) te movés 5 al este y 6 al sur. ¿Dónde llegás?',a:[2,-2],e:'(−3+5; 4−6) = (2; −2).'}];
+let pts=0;const done={};
+function mk(id,arr,sc){const el=document.getElementById(id);arr.forEach((q,i)=>{const k=id+i,d=document.createElement('div');d.className='q';
+let h=`<b>${i+1}.</b> ${q.q}${q.l?`<span class="lv">${q.l}</span>`:''}`;
+if(q.t=='mc')h+=q.o.map((o,j)=>`<label class="o"><input type="radio" name="${k}" value="${j}"> ${o}</label>`).join('');
+if(q.t=='pair')h+=(q.g?`<div class="fig">${G(q.g)}</div>`:'')+`<div>( <input type="number" step="any" id="${k}x"> ; <input type="number" step="any" id="${k}y"> )</div>`;
+if(q.t=='click')h+=`<div class="fig">${G({id:k+'s',ax:1})}</div><div class="fb" id="${k}c">Todavía no marcaste ningún punto.</div>`;
+h+=`<button onclick="chk('${id}',${i},${sc?1:0})">Comprobar</button><div class="fb" id="${k}f"></div>`;d.innerHTML=h;el.appendChild(d);
+if(q.t=='click'){const s=d.querySelector('svg');s.style.cursor='crosshair';s.onclick=e=>{const r=s.getBoundingClientRect(),f=S/r.width,x=Math.max(-R,Math.min(R,Math.round(((e.clientX-r.left)*f-O)/C))),y=Math.max(-R,Math.min(R,Math.round((O-(e.clientY-r.top)*f)/C)));q.sel=[x,y];s.querySelector('#mk').innerHTML=`<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#2f6f5e" stroke="#fff" stroke-width="2"/>`;document.getElementById(k+'c').textContent=`Marcaste (${x}; ${y})`}}});window['A'+id]=arr}
+function chk(id,i,sc){const q=window['A'+id][i],k=id+i,f=document.getElementById(k+'f');let ok=false,got=true;
+if(q.t=='mc'){const r=document.querySelector(`input[name="${k}"]:checked`);if(!r)got=false;else ok=+r.value==q.a}
+if(q.t=='pair'){const a=document.getElementById(k+'x').value,b=document.getElementById(k+'y').value;if(a===''||b==='')got=false;else ok=+a==q.a[0]&&+b==q.a[1]}
+if(q.t=='click'){if(!q.sel)got=false;else{ok=q.sel[0]==q.a[0]&&q.sel[1]==q.a[1];document.querySelector(`#${k}s #mk`).innerHTML+=`<circle cx="${X(q.a[0])}" cy="${Y(q.a[1])}" r="7" fill="none" stroke="#1f7a45" stroke-width="3"/>`}}
+if(!got){f.innerHTML='<span class="no">Completá tu respuesta primero.</span>';return}
+f.innerHTML=ok?`<span class="ok">✓ Correcto.</span> ${q.e}`:`<span class="no">✗ Todavía no.</span> Pista: ${q.e}`;
+if(sc&&!(k in done)){done[k]=ok?1:0;pts+=ok?1:0;document.getElementById('score').textContent=`Puntaje: ${pts} / 18 · respondidas: ${Object.keys(done).length}`;if(Object.keys(done).length==18)document.getElementById('score').textContent+=pts>=15?' · ¡Excelente!':pts>=10?' · Bien, repasá los errores.':' · Repasá el marco teórico y volvé a intentar.'}}
+mk('d1',D1);mk('c1',CO);mk('c2',AF);mk('c3',TR);mk('ev',EV,1);
+</script></body></html>
